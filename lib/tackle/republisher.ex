@@ -20,8 +20,7 @@ defmodule Tackle.Republisher do
     #IO.write "Fetching message... "
 
     case AMQP.Basic.get(channel, queue) do
-      {:empty, _} ->
-        #IO.puts "no more messages"
+      {:empty, _} -> nil #IO.puts "no more messages"
 
       {:ok, message, %{delivery_tag: tag}} ->
         AMQP.Basic.publish(channel, exchange, routing_key, message, persistent: true)
