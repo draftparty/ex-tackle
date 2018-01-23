@@ -3,7 +3,7 @@ defmodule Tackle.Exchange do
   #require Logger
 
   def create(channel, service_name, routing_key) do
-    #name = "#{service_name}.#{routing_key}"
+    name = "#{service_name}.#{routing_key}"
 
     Exchange.direct(channel, name, durable: true)
 
