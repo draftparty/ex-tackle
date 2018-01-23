@@ -7,7 +7,7 @@ defmodule Tackle.Queue do
   def create_queue(channel, service_exchange) do
     queue_name = service_exchange
 
-    Logger.info "Creating queue '#{queue_name}'"
+#    Logger.info "Creating queue '#{queue_name}'"
 
     Queue.declare(channel, queue_name, durable: true)
 
@@ -17,7 +17,7 @@ defmodule Tackle.Queue do
   def create_delay_queue(channel, service_exchange, routing_key, delay) do
     queue_name = "#{service_exchange}.delay.#{delay}"
 
-    Logger.info "Creating delay queue '#{queue_name}'"
+#    Logger.info "Creating delay queue '#{queue_name}'"
 
     Queue.declare(channel, queue_name, [
       durable: true,
@@ -34,7 +34,7 @@ defmodule Tackle.Queue do
   def create_dead_queue(channel, service_exchange) do
     queue_name = "#{service_exchange}.dead"
 
-    Logger.info "Creating dead queue '#{queue_name}'"
+#    Logger.info "Creating dead queue '#{queue_name}'"
 
     Queue.declare(channel, queue_name, [
       durable: true,

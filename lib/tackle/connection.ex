@@ -31,7 +31,7 @@ defmodule Tackle.Connection do
 
   defp open_(name=:default, url) do
     connection = open(url)
-    Logger.info("Opening new connection #{inspect connection} for id: #{name}")
+    #Logger.info("Opening new connection #{inspect connection} for id: #{name}")
     connection
   end
   defp open_(name, url) do
@@ -40,7 +40,7 @@ defmodule Tackle.Connection do
       nil ->
         open_and_persist(name, url)
       connection ->
-        Logger.info("Fetched existing connection #{inspect connection} for id: #{name}")
+        #Logger.info("Fetched existing connection #{inspect connection} for id: #{name}")
         connection
         |> validate(name)
         |> reopen_on_validation_failure(name, url)
@@ -51,7 +51,7 @@ defmodule Tackle.Connection do
     case open(url) do
       response = {:ok, connection} ->
         Agent.update(__MODULE__, fn state -> Map.put(state, name, connection) end)
-        Logger.info("Opening new connection #{inspect connection} for id: #{name}")
+        #Logger.info("Opening new connection #{inspect connection} for id: #{name}")
         response
       error ->
         Logger.error("Failed to open new connection for id: #{name}: #{error}")
